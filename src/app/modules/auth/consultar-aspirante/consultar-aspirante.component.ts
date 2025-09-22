@@ -55,7 +55,15 @@ export class ConsultarAspiranteComponent implements OnInit {
         const payload = this.formsearch.getRawValue();
         this.fireBaseservice.consultarResitro(payload).subscribe({
             next: (resp) => {
-                this.dataConsulta = resp?.resultados || [];
+                const data: any[] = [];
+
+                ((resp?.resultados as any[]) || []).forEach((item) => {
+                    if (!!item?.estado) {
+                        data.push(item);
+                    }
+                });
+
+                this.dataConsulta = data;
                 // this.dataConsulta = dataOffline || [];
                 this._sweetAlertService.stopLoading();
 
