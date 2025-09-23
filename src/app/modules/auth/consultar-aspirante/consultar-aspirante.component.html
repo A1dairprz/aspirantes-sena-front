@@ -11,6 +11,9 @@
                 [formGroup]="formsearch"
                 class="w-full flex flex-col gap-2 items-center justify-center px-4 py-4"
             >
+                <span class="font-semibold text-gray-700 text-xl mb-5 -mt-5"
+                    >Consultar inscripción</span
+                >
                 <mat-form-field class="fuse-mat-dense w-full">
                     <mat-label>Tipo documento</mat-label>
                     <mat-select formControlName="TIPO_DOCUMENTO">
@@ -52,7 +55,7 @@
                     class="w-fit text-white absolute bottom-consulta"
                 >
                     <mat-icon class="text-white">search</mat-icon>
-                    Consultar inscripción
+                    Consultar
                 </button>
             </form>
 
@@ -60,91 +63,95 @@
                 *ngIf="dataConsulta.length > 0"
                 class="w-full flex p-2 flex-col gap-2"
             >
-                <div
-                    *ngFor="let item of dataConsulta"
-                    class="w-full flex flex-col gap-2 max-h-[420px] overflow-y-auto overflow-x-hidden"
-                >
-                    <div class="w-full flex flex-col text-start">
-                        <span class="font-semibold text-black">
-                            Aspirante :
-                        </span>
+                <div class="max-h-[500px] overflow-y-auto overflow-x-hidden">
+                    <div
+                        *ngFor="let item of dataConsulta"
+                        class="w-full flex flex-col gap-2"
+                    >
+                        <div class="w-full flex flex-col text-start">
+                            <span class="font-semibold text-black">
+                                Aspirante :
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["TIPO_DOC"] }} {{ item["DOCUMENTO"] }} -
-                            {{ item["NOMBRES"] }} {{ item["APELLIDOS"] }}
-                        </span>
+                            <span class="text-gray-700">
+                                {{ item["TIPO_DOC"] }} {{ item["DOCUMENTO"] }} -
+                                {{ item["NOMBRES"] }} {{ item["APELLIDOS"] }}
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["CORREO_E"] }}
-                        </span>
-                    </div>
+                            <span class="text-gray-700">
+                                {{ item["CORREO_E"] }}
+                            </span>
+                        </div>
 
-                    <div class="w-full flex flex-col text-start">
-                        <span class="font-semibold text-black">
-                            Regional :
-                        </span>
+                        <div class="w-full flex flex-col text-start">
+                            <span class="font-semibold text-black">
+                                Regional :
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["NOMBRE REGIONAL"] }}
-                        </span>
-                    </div>
+                            <span class="text-gray-700">
+                                {{ item["NOMBRE REGIONAL"] }}
+                            </span>
+                        </div>
 
-                    <div class="w-full flex flex-col text-start">
-                        <span class="font-semibold text-black">
-                            Centro de formación :
-                        </span>
+                        <div class="w-full flex flex-col text-start">
+                            <span class="font-semibold text-black">
+                                Centro de formación :
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["NOMBRE SEDE"] }}
-                        </span>
-                    </div>
+                            <span class="text-gray-700">
+                                {{ item["NOMBRE SEDE"] }}
+                            </span>
+                        </div>
 
-                    <div class="w-full flex flex-col text-start">
-                        <span class="font-semibold text-black">
-                            Programa de formación :
-                        </span>
+                        <div class="w-full flex flex-col text-start">
+                            <span class="font-semibold text-black">
+                                Programa de formación :
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["DENOMINACION PROGRAMA"] }}
-                        </span>
-                    </div>
+                            <span class="text-gray-700">
+                                {{ item["DENOMINACION PROGRAMA"] }}
+                            </span>
+                        </div>
 
-                    <div class="w-full flex flex-col text-start">
-                        <span class="font-semibold text-black">
-                            Nivel de formación :
-                        </span>
+                        <div class="w-full flex flex-col text-start">
+                            <span class="font-semibold text-black">
+                                Nivel de formación :
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["NIVEL FORMACION"] }}
-                        </span>
-                    </div>
+                            <span class="text-gray-700">
+                                {{ item["NIVEL FORMACION"] }}
+                            </span>
+                        </div>
 
-                    <div class="w-full flex flex-col text-start">
-                        <span class="font-semibold text-black"> Ficha : </span>
+                        <div class="w-full flex flex-col text-start">
+                            <span class="font-semibold text-black">
+                                Ficha :
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["CODIGO FICHA"] }}
-                        </span>
-                    </div>
+                            <span class="text-gray-700">
+                                {{ item["CODIGO FICHA"] }}
+                            </span>
+                        </div>
 
-                    <div class="w-full flex flex-col text-start">
-                        <span class="font-semibold text-black">
-                            Estado del aspirante :
-                        </span>
+                        <div class="w-full flex flex-col text-start">
+                            <span class="font-semibold text-black">
+                                Estado del aspirante :
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["ESTADO"] }}
-                        </span>
-                    </div>
+                            <span class="text-gray-700">
+                                {{ item["ESTADO"] }}
+                            </span>
+                        </div>
 
-                    <div class="w-full flex flex-col text-start">
-                        <span class="font-semibold text-black">
-                            Descripción :
-                        </span>
+                        <div class="w-full flex flex-col text-start">
+                            <span class="font-semibold text-black">
+                                Descripción :
+                            </span>
 
-                        <span class="text-gray-700">
-                            {{ item["DESCRIPCION"] }}
-                        </span>
+                            <span class="text-gray-700">
+                                {{ item["DESCRIPCION"] }}
+                            </span>
+                        </div>
                     </div>
                 </div>
 

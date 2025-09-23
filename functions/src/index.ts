@@ -168,7 +168,7 @@ export const buscarEnConvocatorias = functions.https.onRequest(
                     querySnap.forEach((subDoc) => {
                         resultados.push({
                             // convocatoriaId: doc.id,
-                            ...doc,
+                            estado: doc.data().estado,
                             dataConvocatoriaId: subDoc.id,
                             ...subDoc.data(),
                         });
