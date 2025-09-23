@@ -61,6 +61,7 @@ export const createConvocatoria = functions.https.onRequest((req, res) => {
                 const batch = db.batch();
 
                 dataConvocatoria.forEach((row: any) => {
+                    row['DOCUMENTO'] = String(row['DOCUMENTO']);
                     const subRef = docRef.collection('dataConvocatoria').doc();
                     batch.set(subRef, { ...row, token });
                 });
