@@ -67,6 +67,10 @@ export class ModalAgregarRegistrosComponent implements OnInit {
 
             this.Sweetalert2Service.startLoading({});
 
+            this.data.forEach((element: any) => {
+                element['DOCUMENTO'] = (element['DOCUMENTO'] || '').toString();
+            });
+
             const payload: any = {
                 convocatoria: form.convocatoria,
                 vigencia: form.vigencia,
