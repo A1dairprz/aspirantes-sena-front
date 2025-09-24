@@ -58,21 +58,54 @@ export const createConvocatoria = functions.https.onRequest((req, res) => {
                 console.log(
                     `Insertando ${dataConvocatoria.length} registros en subcolección...`
                 );
-                const batch = db.batch();
 
-                dataConvocatoria.forEach((row: any) => {
-                    row['DOCUMENTO'] = String(row['DOCUMENTO']);
-                    const subRef = docRef.collection('dataConvocatoria').doc();
-                    batch.set(subRef, { ...row, token });
-                });
+                const chunkSize = 450;
+                let batchCount = 0;
 
-                await batch.commit();
+                for (let i = 0; i < dataConvocatoria.length; i += chunkSize) {
+                    const batch = db.batch();
+                    const chunk = dataConvocatoria.slice(i, i + chunkSize);
+
+                    chunk.forEach((row: any) => {
+                        row['DOCUMENTO'] = String(row['DOCUMENTO']);
+                        const subRef = docRef
+                            .collection('dataConvocatoria')
+                            .doc();
+                        batch.set(subRef, { ...row, token });
+                    });
+
+                    await batch.commit();
+                    batchCount++;
+                    console.log(
+                        `✅ Batch ${batchCount} insertado con ${chunk.length} registros`
+                    );
+                }
             } else {
                 console.warn(
                     'dataConvocatoria no es un array, se ignora:',
                     dataConvocatoria
                 );
             }
+
+            // if (Array.isArray(dataConvocatoria)) {
+            //     console.log(
+            //         `Insertando ${dataConvocatoria.length} registros en subcolección...`
+            //     );
+            //     const batch = db.batch();
+
+            //     dataConvocatoria.forEach((row: any) => {
+            //         row['DOCUMENTO'] = String(row['DOCUMENTO']);
+            //         const subRef = docRef.collection('dataConvocatoria').doc();
+            //         batch.set(subRef, { ...row, token });
+            //     });
+
+            //     await batch.commit();
+            // } else {
+            //     console.warn(
+            //         'dataConvocatoria no es un array, se ignora:',
+            //         dataConvocatoria
+            //     );
+            // }
 
             res.status(200).json({ success: true, id: docRef.id });
         } catch (err: any) {
