@@ -1,5 +1,4 @@
 services:
     sena-app:
         build: .
-        ports:
-            - "9001:80"
+       
